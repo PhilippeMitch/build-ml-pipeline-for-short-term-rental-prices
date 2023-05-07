@@ -36,8 +36,15 @@ def go(args):
     df['last_review'] = pd.to_datetime(df['last_review'])
     logger.info('Dataframe cleaning steps done')
 
+    idx = df['longitude'].between(-74.25, -73.50) & df['latitude'].between(40.5, 41.2)
+    df = df[idx].copy()
+
     # Save the results to a CSV file called clean_sample.csv
-    df.to_csv("clean_sample.csv", index=False)
+    # Write cleaned version
+    logger.info("Logging artifact")
+    filename = args.output_artifact
+    df.to_csv(filename, index=False)
+    # df.to_csv("clean_sample.csv", index=False)
     logger.info('Dataframe saved to csv')
 
     # upload CSV file to W&B using
