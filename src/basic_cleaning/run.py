@@ -42,9 +42,8 @@ def go(args):
     # Save the results to a CSV file called clean_sample.csv
     # Write cleaned version
     logger.info("Logging artifact")
-    filename = args.output_artifact
-    df.to_csv(filename, index=False)
-    # df.to_csv("clean_sample.csv", index=False)
+    df.to_csv(args.output_artifact, index=False)
+    # df.to_csv(args.output_artifact, index=False)
     logger.info('Dataframe saved to csv')
 
     # upload CSV file to W&B using
@@ -54,7 +53,7 @@ def go(args):
      description=args.output_description,
     )
 
-    artifact.add_file("clean_sample.csv")
+    artifact.add_file(args.output_artifact)
     run.log_artifact(artifact)
     logger.info('Cleaned data artifact logged to W&B')
 
