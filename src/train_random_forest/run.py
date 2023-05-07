@@ -86,12 +86,12 @@ def go(args):
     r_squared = sk_pipe.score(X_val, y_val)
 
     y_pred = sk_pipe.predict(X_val)
-    #mae = mean_absolute_error(y_val, y_pred)
-    mse = mean_squared_error(y_val, y_pred)
+    mae = mean_absolute_error(y_val, y_pred)
+    #mse = mean_squared_error(y_val, y_pred)
 
     logger.info(f"Score: {r_squared}")
-    #logger.info(f"MAE: {mae}")
-    logger.info(f"MSE: {mse}")
+    logger.info(f"MAE: {mae}")
+    #logger.info(f"MSE: {mse}")
 
     logger.info("Exporting model")
 
@@ -143,8 +143,8 @@ def go(args):
     run.summary['r2'] = r_squared
     # Now log the variable "mae" under the key "mae".
     # YOUR CODE HERE
-    #run.summary['mae'] = mae
-    run.summary['mse'] = mse
+    run.summary['mae'] = mae
+    #run.summary['mse'] = mse
     ######################################
 
     # Upload to W&B the feture importance visualization
